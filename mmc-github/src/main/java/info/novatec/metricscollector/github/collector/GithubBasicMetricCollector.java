@@ -9,6 +9,7 @@ import javax.json.JsonReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +28,7 @@ public abstract class GithubBasicMetricCollector implements MetricCollector {
 
     RestService restService;
 
+    @Getter
     Metrics metrics;
 
     @Autowired
@@ -56,7 +58,7 @@ public abstract class GithubBasicMetricCollector implements MetricCollector {
         return jsonReader.readObject();
     }
 
-    String getBaseRequestUrl() {
+    public String getBaseRequestUrl() {
         return GITHUB_API_URL + metrics.getRepositoryName();
     }
 }
